@@ -1,0 +1,35 @@
+# Build artifacts
+bin/
+build/
+dist/
+out/
+obj/
+
+# Go toolchain outputs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.test
+*.out
+
+# Vendor cache
+vendor/
+
+# Logs and coverage
+*.log
+coverage/
+cover.out
+
+# Environment files
+.env
+.env.*
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

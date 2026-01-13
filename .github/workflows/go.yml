@@ -1,0 +1,29 @@
+name: Go CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20.x'
+    - name: Install golangci-lint
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v2.7.2
+    - name: Lint
+      run: golangci-lint run
+    - name: Test
+      run: go test -v ./...
+    - name: Coverage
+      run: |
+        go test -coverprofile=cover.out ./...
+        go tool cover -func=cover.out | tee cover.txt
