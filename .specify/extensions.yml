@@ -1,0 +1,30 @@
+# Register the local activity logger.
+extensions:
+  - id: local_logger
+    name: "Local Activity Logger"
+    path: "./.specify/scripts/log_hook.sh"
+
+# Log the lifecycle events around task generation and implementation.
+before_tasks:
+  extension: local_logger
+  enabled: true
+  optional: false
+  args: ["$CURRENT_COMMAND", "before_tasks"]
+
+after_tasks:
+  extension: local_logger
+  enabled: true
+  optional: false
+  args: ["$CURRENT_COMMAND", "after_tasks"]
+
+before_implement:
+  extension: local_logger
+  enabled: true
+  optional: false
+  args: ["$CURRENT_COMMAND", "before_implement"]
+
+after_implement:
+  extension: local_logger
+  enabled: true
+  optional: false
+  args: ["$CURRENT_COMMAND", "after_implement"]
